@@ -1,22 +1,16 @@
-import { Component, OnInit } from '@angular/core'
+import {Component, Input, OnInit} from '@angular/core'
 import {Movie} from '../Movie'
 
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',
-  styleUrls: ['./movies.component.css']
+  styleUrls: ['./movies.component.scss']
 })
 export class MoviesComponent implements OnInit {
   constructor() { }
 
-  movies: Movie[] = [
-    {id: 1, name: 'Get Out'},
-    {id: 2, name: 'Django Unchained'},
-    {id: 3, name: 'Red Cliff'},
-    {id: 4, name: 'Esther'}
-  ]
+  @Input() movies: Movie[]
+  @Input() title: string
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
