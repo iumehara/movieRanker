@@ -3,8 +3,9 @@
   <div class='list' >
     <div class='row' *ngFor='let movie of movies'>
       <div>{{movie.name}}</div>
-      <div *ngIf='!wishlistIds.includes(movie.id)'>
+      <div *ngIf='!wishlistIds.includes(movie.id) && !watchedlistIds.includes(movie.id)'>
         <button (click)="addToWishlist(movie)">Add to Wish List</button>
+        <button (click)="addToWatchedlist(movie)">Add to Watched List</button>
       </div>
     </div>
   </div>

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core'
 import {Movie} from '../Movie'
 import {MovieService} from '../services/movie.service'
 import {WishlistService} from '../wishlist/wishlist.service'
+import {WatchedlistService} from '../watchedlist/watchedlist.service'
 
 @Component({
   selector: 'app-list-manager',
@@ -12,21 +13,30 @@ import {WishlistService} from '../wishlist/wishlist.service'
 export class ListManagerComponent implements OnInit {
   constructor(
     private movieService: MovieService,
-    private wishListService: WishlistService
+    private wishlistService: WishlistService,
+    private watchedlistService: WatchedlistService
   ) { }
 
   wishlist: Movie[] = []
   wishlistIds: number[] = []
+
+  watchedlist: Movie[] = []
+  watchedlistIds: number[] = []
+
   masterlist: Movie[]
 
   ngOnInit() {
-    this.getWishList()
+    this.getWishlist()
+    this.getWatchedlist()
     this.getMasterList()
   }
 
   receiveChildlistMessage($event) {
     if ($event === 'WISHLIST_UPDATED') {
-      this.getWishList()
+      this.getWishlist()
+    }
+    if ($event === 'WATCHEDLIST_UPDATED') {
+      this.getWatchedlist()
     }
   }
 
@@ -35,11 +45,19 @@ export class ListManagerComponent implements OnInit {
       .subscribe(movies => this.masterlist = movies)
   }
 
-  private getWishList(): void {
-    this.wishListService.getAll()
+  private getWishlist(): void {
+    this.wishlistService.getAll()
       .subscribe(movies => {
         this.wishlist = movies
         this.wishlistIds = movies.map(movie => movie.id)
+      })
+  }
+
+  private getWatchedlist(): void {
+    this.watchedlistService.getAll()
+      .subscribe(movies => {
+        this.watchedlist = movies
+        this.watchedlistIds = movies.map(movie => movie.id)
       })
   }
 }

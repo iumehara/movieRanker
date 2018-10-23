@@ -1,3 +1,9 @@
-<p>
-  watchedlist works!
-</p>
+<div>
+  <h2>Watched</h2>
+  <div class='list' >
+    <div class='row' *ngFor='let movie of movies'>
+      <div>{{movie.name}}</div>
+      <button (click)="removeFromWatchedlist(movie)">Remove</button>
+    </div>
+  </div>
+</div>

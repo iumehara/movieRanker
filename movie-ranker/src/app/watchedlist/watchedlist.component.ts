@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core'
+import {Movie} from '../Movie'
+import {WatchedlistService} from './watchedlist.service'
 
 @Component({
   selector: 'app-watchedlist',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./watchedlist.component.css']
 })
 export class WatchedlistComponent implements OnInit {
+  constructor(private watchedlistService: WatchedlistService) { }
 
-  constructor() { }
+  @Input() movies: Movie[]
+  @Output() messageEvent = new EventEmitter<string>()
 
   ngOnInit() {
   }
 
+  removeFromWatchedlist(movie: Movie) {
+    this.watchedlistService.remove(movie)
+    this.messageEvent.emit('WATCHEDLIST_UPDATED')
+  }
 }

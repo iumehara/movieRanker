@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'
 import {Movie} from '../Movie'
 import {Observable, of} from 'rxjs'
 

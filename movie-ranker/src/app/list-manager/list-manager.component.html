@@ -1,12 +1,16 @@
 <div class='dashboard'>
   <app-wishlist [movies]='wishlist'
                 (messageEvent)="receiveChildlistMessage($event)">
-
   </app-wishlist>
+
+  <app-watchedlist [movies]='watchedlist'
+                   (messageEvent)="receiveChildlistMessage($event)">
+  </app-watchedlist>
 </div>
 <div>
   <app-masterlist [movies]='masterlist'
                   [wishlistIds]='wishlistIds'
+                  [watchedlistIds]='watchedlistIds'
                   (messageEvent)='receiveChildlistMessage($event)'>
   </app-masterlist>
 </div>

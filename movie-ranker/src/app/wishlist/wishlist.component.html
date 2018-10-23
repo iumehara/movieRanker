@@ -3,7 +3,8 @@
   <div class='list' >
     <div class='row' *ngFor='let movie of movies'>
       <div>{{movie.name}}</div>
-      <button (click)="removeFromWishlist(movie)">Remove from Wish List</button>
+      <button (click)="moveToWatchedList(movie)">Watched</button>
+      <button (click)="removeFromWishlist(movie)">Remove</button>
     </div>
   </div>
 </div>
