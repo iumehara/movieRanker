@@ -5,10 +5,10 @@ import {Observable, of} from 'rxjs'
 @Injectable({
   providedIn: 'root'
 })
-export class MovieService {
+export class MasterlistService {
   constructor() { }
 
-  getMovies(): Observable<Movie[]> {
+  getAll(): Observable<Movie[]> {
     return of([
       {id: 1, name: 'Get Out'},
       {id: 2, name: 'Django Unchained'},

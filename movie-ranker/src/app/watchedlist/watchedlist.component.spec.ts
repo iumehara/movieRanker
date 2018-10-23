@@ -1,25 +1,25 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { WatchedlistComponent } from './watchedlist.component';
+import { WatchedlistComponent } from './watchedlist.component'
 
 describe('WatchedlistComponent', () => {
-  let component: WatchedlistComponent;
-  let fixture: ComponentFixture<WatchedlistComponent>;
+  let component: WatchedlistComponent
+  let fixture: ComponentFixture<WatchedlistComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ WatchedlistComponent ]
     })
-    .compileComponents();
-  }));
+    .compileComponents()
+  }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WatchedlistComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(WatchedlistComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core'
 import {Movie} from '../Movie'
-import {MovieService} from '../services/movie.service'
+import {MasterlistService} from '../masterlist/masterlist.service'
 import {WishlistService} from '../wishlist/wishlist.service'
 import {WatchedlistService} from '../watchedlist/watchedlist.service'
 
@@ -12,7 +12,7 @@ import {WatchedlistService} from '../watchedlist/watchedlist.service'
 
 export class ListManagerComponent implements OnInit {
   constructor(
-    private movieService: MovieService,
+    private movieService: MasterlistService,
     private wishlistService: WishlistService,
     private watchedlistService: WatchedlistService
   ) { }
@@ -41,7 +41,7 @@ export class ListManagerComponent implements OnInit {
   }
 
   private getMasterList(): void {
-    this.movieService.getMovies()
+    this.movieService.getAll()
       .subscribe(movies => this.masterlist = movies)
   }
 
