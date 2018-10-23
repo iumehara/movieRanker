@@ -1,31 +1,45 @@
-import {Component, Input, OnInit} from '@angular/core'
+import {Component, OnInit} from '@angular/core'
 import {Movie} from '../Movie'
-import {MovieService} from '../movie.service'
+import {MovieService} from '../services/movie.service'
+import {WishlistService} from '../services/wishlist.service'
 
 @Component({
   selector: 'app-list-manager',
   templateUrl: './list-manager.component.html',
   styleUrls: ['./list-manager.component.scss']
 })
+
 export class ListManagerComponent implements OnInit {
+  constructor(
+    private movieService: MovieService,
+    private wishListService: WishlistService
+  ) { }
 
-  constructor(private service: MovieService) { }
-
-  masterListTitle = 'All Movies'
-  masterList: Movie[]
-
-  wishListTitle = 'Wish List'
-  wishList: Movie[] = []
-
-  watchedListTitle = 'Watched'
-  watchedList: Movie[] = []
+  wishlist: Movie[] = []
+  wishlistIds: number[] = []
+  masterlist: Movie[]
 
   ngOnInit() {
-    this.getMovies()
+    this.getWishList()
+    this.getMasterList()
   }
 
-  private getMovies(): void {
-    this.service.getMovies()
-      .subscribe(movies => this.masterList = movies)
+  receiveChildlistMessage($event) {
+    if ($event === 'WISHLIST_UPDATED') {
+      this.getWishList()
+    }
+  }
+
+  private getMasterList(): void {
+    this.movieService.getMovies()
+      .subscribe(movies => this.masterlist = movies)
+  }
+
+  private getWishList(): void {
+    this.wishListService.getAll()
+      .subscribe(movies => {
+        this.wishlist = movies
+        this.wishlistIds = movies.map(movie => movie.id)
+      })
   }
 }

@@ -1,0 +1,9 @@
+<div>
+  <h2>Wish List</h2>
+  <div class='list' >
+    <div class='row' *ngFor='let movie of movies'>
+      <div>{{movie.name}}</div>
+      <button (click)="removeFromWishlist(movie)">Remove from Wish List</button>
+    </div>
+  </div>
+</div>

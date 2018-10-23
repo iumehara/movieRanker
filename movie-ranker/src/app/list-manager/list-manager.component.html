@@ -1,7 +1,12 @@
 <div class='dashboard'>
-  <app-movies [movies]='wishList' [title]='wishListTitle'></app-movies>
-  <app-movies [movies]='watchedList' [title]='watchedListTitle'></app-movies>
+  <app-wishlist [movies]='wishlist'
+                (messageEvent)="receiveChildlistMessage($event)">
+
+  </app-wishlist>
 </div>
 <div>
-  <app-movies [movies]='masterList' [title]='masterListTitle'></app-movies>
+  <app-masterlist [movies]='masterlist'
+                  [wishlistIds]='wishlistIds'
+                  (messageEvent)='receiveChildlistMessage($event)'>
+  </app-masterlist>
 </div>

@@ -19,3 +19,20 @@ body, input[text], button {
 * {
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.list {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  .row {
+    background-color: aliceblue;
+    flex-direction: row;
+    border: 1px solid gray;
+    padding: 20px;
+    margin: 20px;
+    justify-content: space-between;
+    div {
+      display: inline-block;
+    }
+  }
+}
