@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core'
 import {Movie} from '../Movie'
-import {WishlistService} from '../services/wishlist.service'
+import {WishlistService} from '../wishlist/wishlist.service'
 
 @Component({
   selector: 'app-masterlist',

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core'
-import {WishlistService} from '../services/wishlist.service'
+import {WishlistService} from './wishlist.service'
 import {Movie} from '../Movie'
 
 @Component({

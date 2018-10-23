@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core'
 import {Movie} from '../Movie'
 import {MovieService} from '../services/movie.service'
-import {WishlistService} from '../services/wishlist.service'
+import {WishlistService} from '../wishlist/wishlist.service'
 
 @Component({
   selector: 'app-list-manager',
