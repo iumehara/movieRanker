@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core'
 import {Movie} from '../Movie'
 import {WishlistService} from '../wishlist/wishlist.service'
 import {WatchedlistService} from '../watchedlist/watchedlist.service'
+import {ListEvent} from '../MessageEvent'
 
 @Component({
   selector: 'app-masterlist',
@@ -24,11 +25,11 @@ export class MasterlistComponent implements OnInit {
 
   addToWishlist(movie: Movie) {
     this.wishlistService.add(movie)
-    this.messageEvent.emit('WISHLIST_UPDATED')
+    this.messageEvent.emit(ListEvent.WISHLIST_UPDATED)
   }
 
   addToWatchedlist(movie: Movie) {
     this.watchedlistService.add(movie)
-    this.messageEvent.emit('WATCHEDLIST_UPDATED')
+    this.messageEvent.emit(ListEvent.WATCHEDLIST_UPDATED)
   }
 }

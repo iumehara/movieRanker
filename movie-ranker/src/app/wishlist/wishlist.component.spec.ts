@@ -1,25 +1,23 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { WishlistComponent } from './wishlist.component';
+import {ComponentFixture, TestBed} from '@angular/core/testing'
+import {WishlistComponent} from './wishlist.component'
 
 describe('WishlistComponent', () => {
-  let component: WishlistComponent;
-  let fixture: ComponentFixture<WishlistComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ WishlistComponent ]
-    })
-    .compileComponents();
-  }));
+  let fixture: ComponentFixture<WishlistComponent>
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WishlistComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    TestBed.configureTestingModule({declarations: [ WishlistComponent ]})
+    fixture = TestBed.createComponent(WishlistComponent)
+  })
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  it('displays movie with Watched and Remove buttons', () => {
+    const component = fixture.componentInstance
+    component.movies = [{id: 1, name: 'test movie'}]
+
+    fixture.detectChanges()
+
+    const listText = fixture.nativeElement.querySelector('.list').textContent
+    expect(listText).toContain('test movie')
+    expect(listText).toContain('Watched')
+    expect(listText).toContain('Remove')
+  })
+})

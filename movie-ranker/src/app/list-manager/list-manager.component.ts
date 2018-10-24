@@ -3,6 +3,7 @@ import {Movie} from '../Movie'
 import {MasterlistService} from '../masterlist/masterlist.service'
 import {WishlistService} from '../wishlist/wishlist.service'
 import {WatchedlistService} from '../watchedlist/watchedlist.service'
+import {ListEvent} from '../MessageEvent'
 
 @Component({
   selector: 'app-list-manager',
@@ -32,10 +33,10 @@ export class ListManagerComponent implements OnInit {
   }
 
   receiveChildlistMessage($event) {
-    if ($event === 'WISHLIST_UPDATED') {
+    if ($event === ListEvent.WISHLIST_UPDATED) {
       this.getWishlist()
     }
-    if ($event === 'WATCHEDLIST_UPDATED') {
+    if ($event === ListEvent.WATCHEDLIST_UPDATED) {
       this.getWatchedlist()
     }
   }
