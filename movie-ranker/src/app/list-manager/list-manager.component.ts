@@ -13,7 +13,7 @@ import {ListEvent} from '../MessageEvent'
 
 export class ListManagerComponent implements OnInit {
   constructor(
-    private movieService: MasterlistService,
+    private masterlistService: MasterlistService,
     private wishlistService: WishlistService,
     private watchedlistService: WatchedlistService
   ) { }
@@ -42,7 +42,7 @@ export class ListManagerComponent implements OnInit {
   }
 
   private getMasterList(): void {
-    this.movieService.getAll()
+    this.masterlistService.getAll()
       .subscribe(movies => this.masterlist = movies)
   }
 
