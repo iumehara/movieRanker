@@ -1,0 +1,5 @@
+DROP TABLE IF EXISTS movies;
+CREATE TABLE movies (
+  id SERIAL UNIQUE,
+  name varchar(100) UNIQUE NOT NULL
+);

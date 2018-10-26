@@ -1,16 +1,22 @@
 package io.umehara.movieranker
 
+import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.stereotype.Repository
+import java.sql.ResultSet
 
 @Repository
-class DatabaseMovieRepo: MovieRepo {
+class DatabaseMovieRepo(val jdbcTemplate: JdbcTemplate) : MovieRepo {
     override fun getAll(): List<Movie> {
-        return listOf(
-                Movie(1, "The Godfather"),
-                Movie(2, "The Wizard of Oz"),
-                Movie(3, "The Sound of Music"),
-                Movie(4, "Get Out"),
-                Movie(5, "Django Unchained")
+        val sqlString = "SELECT * FROM movies"
+        return jdbcTemplate.query(sqlString) { rs, _ ->
+            movieRowMapper(rs)
+        }
+    }
+
+    private fun movieRowMapper(rs: ResultSet): Movie {
+        return Movie(
+                rs.getLong("id"),
+                rs.getString("name")
         )
     }
 }
