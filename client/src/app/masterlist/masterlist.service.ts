@@ -1,23 +1,14 @@
-import { Injectable } from '@angular/core'
+import {Injectable} from '@angular/core'
 import {Movie} from '../Movie'
-import {Observable, of} from 'rxjs'
+import {Observable} from 'rxjs'
+import {HttpClient} from '@angular/common/http'
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({providedIn: 'root'})
 export class MasterlistService {
-  constructor() { }
+  constructor(private httpClient: HttpClient) {
+  }
 
   getAll(): Observable<Movie[]> {
-    return of([
-      {id: 1, name: 'Get Out'},
-      {id: 2, name: 'Django Unchained'},
-      {id: 3, name: 'Red Cliff'},
-      {id: 4, name: 'Esther'},
-      {id: 5, name: 'The Post'},
-      {id: 6, name: 'Spotlight'},
-      {id: 7, name: 'Split'},
-      {id: 8, name: 'Old Boy'}
-    ])
+    return this.httpClient.get<Movie[]>('http://localhost:8080/movies')
   }
 }
