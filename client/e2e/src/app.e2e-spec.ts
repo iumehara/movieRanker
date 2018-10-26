@@ -7,8 +7,9 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('displays title', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to movie-ranker!');
+
+    expect(page.getParagraphText()).toEqual('Movie Ranker');
   });
 });
