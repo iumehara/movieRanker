@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("movies")
-class MoviesController(val movieRepo: MovieRepo) {
+class MoviesController(val movieService: MovieService) {
 
     @GetMapping
     fun getAll(): List<Movie> {
-        return movieRepo.getAll()
+        return movieService.getAll()
     }
 }

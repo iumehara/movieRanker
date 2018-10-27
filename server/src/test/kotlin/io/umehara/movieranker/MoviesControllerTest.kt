@@ -9,8 +9,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetu
 class MoviesControllerTest {
     @Test
     fun getAllReturnsMovies() {
-        val movieRepository = StubMovieRepo()
-        val moviesController = MoviesController(movieRepository)
+        val movieService = StubMovieService()
+        val moviesController = MoviesController(movieService)
         val mockController = standaloneSetup(moviesController).build()
 
         mockController.perform(get("/movies"))

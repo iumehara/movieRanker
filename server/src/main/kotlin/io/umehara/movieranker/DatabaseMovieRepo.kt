@@ -13,6 +13,18 @@ class DatabaseMovieRepo(val jdbcTemplate: JdbcTemplate) : MovieRepo {
         }
     }
 
+    override fun getWhere(movieIds: List<Number>): List<Movie> {
+        val sql = "SELECT * " +
+                "FROM movies " +
+                "WHERE ? = ANY (movie_ids)"
+
+        return jdbcTemplate.query(
+                sql,
+                { rs, _ -> movieRowMapper(rs)},
+                arrayOf(movieIds)
+        )
+    }
+
     private fun movieRowMapper(rs: ResultSet): Movie {
         return Movie(
                 rs.getLong("id"),
