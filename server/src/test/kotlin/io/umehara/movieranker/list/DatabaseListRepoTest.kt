@@ -1,5 +1,6 @@
 package io.umehara.movieranker.list
 
+import io.umehara.movieranker.list.ListType.WISHLIST
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
 import org.junit.Test
@@ -17,10 +18,10 @@ class DatabaseListRepoTest {
         jdbcTemplate.update("TRUNCATE wishlists RESTART IDENTITY")
 
         val seedMovieList = listOf(
-                MovieList(1, 2, listOf(1, 5, 8)),
-                MovieList(2, 15, listOf(3, 3, 6)),
-                MovieList(3, 6, listOf(1, 8)),
-                MovieList(4, 12, listOf(12, 13))
+                MovieList(1, 2, emptyList()),
+                MovieList(2, 15, emptyList()),
+                MovieList(3, 6, emptyList()),
+                MovieList(4, 12, emptyList())
         )
 
         var sql = "INSERT INTO wishlists (user_id) VALUES "
@@ -40,8 +41,19 @@ class DatabaseListRepoTest {
 
     @Test
     fun get_returnsMovieListFromDB() {
-        val movieList = databaseListRepo.get(15, ListType.WISHLIST)
+        val movieList = databaseListRepo.get(15, WISHLIST)
 
         assertThat(movieList).isNotNull
+    }
+
+    @Test
+    fun update_updatesMovieList() {
+        val initialMovieList = databaseListRepo.get(15, WISHLIST)
+        assertThat(initialMovieList.movieIds).isEqualTo(emptyList<Number>())
+
+        databaseListRepo.update(15, WISHLIST, listOf(3L, 4L, 6L))
+
+        val updatedMovieList = databaseListRepo.get(15, WISHLIST)
+        assertThat(updatedMovieList.movieIds).isEqualTo(listOf(3L, 4L, 6L))
     }
 }

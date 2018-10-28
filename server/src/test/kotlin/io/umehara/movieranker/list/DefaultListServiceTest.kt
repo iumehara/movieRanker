@@ -37,4 +37,15 @@ class DefaultListServiceTest {
         assertThat(movies[0].id).isEqualTo(2)
         assertThat(movies[0].name).isEqualTo("The Wizard of Oz")
     }
+
+    @Test
+    fun add_callsReposWithCorrectArguments() {
+        listRepo.getReturnValue = MovieList(5, 8, listOf(12, 14))
+
+        defaultMovieService.add(8, WISHLIST, 15)
+
+        assertThat(listRepo.updateArgUserId).isEqualTo(8)
+        assertThat(listRepo.updateArgType).isEqualTo(WISHLIST)
+        assertThat(listRepo.updateArgMovieIds).isEqualTo(listOf(12, 14, 15))
+    }
 }
