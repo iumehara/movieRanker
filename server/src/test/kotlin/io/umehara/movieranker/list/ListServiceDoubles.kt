@@ -12,6 +12,8 @@ class StubListService: ListService {
     }
 
     override fun add(userId: Number, type: ListType, movieId: Number) {}
+
+    override fun remove(userId: Number, type: ListType, movieId: Number) {}
 }
 
 class SpyListService: ListService {
@@ -19,12 +21,21 @@ class SpyListService: ListService {
         return emptyList()
     }
 
-    var updateArgUserId: Number? = null
-    var updateArgType: ListType? = null
-    var updateArgMovieId: Number? = null
+    var addArgUserId: Number? = null
+    var addArgType: ListType? = null
+    var addArgMovieId: Number? = null
     override fun add(userId: Number, type: ListType, movieId: Number) {
-        updateArgUserId = userId
-        updateArgType = type
-        updateArgMovieId = movieId
+        addArgUserId = userId
+        addArgType = type
+        addArgMovieId = movieId
+    }
+
+    var removeArgUserId: Number? = null
+    var removeArgType: ListType? = null
+    var removeArgMovieId: Number? = null
+    override fun remove(userId: Number, type: ListType, movieId: Number) {
+        removeArgUserId = userId
+        removeArgType = type
+        removeArgMovieId = movieId
     }
 }

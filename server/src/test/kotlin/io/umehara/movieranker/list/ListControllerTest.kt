@@ -27,10 +27,23 @@ class ListControllerTest {
         val listController = ListController(listService)
         val mockController = standaloneSetup(listController).build()
 
-        mockController.perform(put("/wishlists/1/movies/12"))
+        mockController.perform(put("/wishlists/1/add/12"))
 
-        assertThat(listService.updateArgUserId).isEqualTo(1)
-        assertThat(listService.updateArgType).isEqualTo(WISHLIST)
-        assertThat(listService.updateArgMovieId).isEqualTo(12)
+        assertThat(listService.addArgUserId).isEqualTo(1)
+        assertThat(listService.addArgType).isEqualTo(WISHLIST)
+        assertThat(listService.addArgMovieId).isEqualTo(12)
+    }
+
+    @Test
+    fun remove_callsRepoWithCorrectArguments() {
+        val listService = SpyListService()
+        val listController = ListController(listService)
+        val mockController = standaloneSetup(listController).build()
+
+        mockController.perform(put("/wishlists/1/remove/12"))
+
+        assertThat(listService.removeArgUserId).isEqualTo(1)
+        assertThat(listService.removeArgType).isEqualTo(WISHLIST)
+        assertThat(listService.removeArgMovieId).isEqualTo(12)
     }
 }

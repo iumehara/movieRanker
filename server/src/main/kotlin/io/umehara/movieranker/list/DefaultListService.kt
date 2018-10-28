@@ -16,8 +16,16 @@ class DefaultListService(
 
     override fun add(userId: Number, type: ListType, movieId: Number) {
         val wishList: MovieList = listRepo.get(userId, type)
-        var movieIds = wishList.movieIds.toMutableList()
+        val movieIds = wishList.movieIds.toMutableList()
         movieIds.add(movieId)
+
+        listRepo.update(userId, type, movieIds)
+    }
+
+    override fun remove(userId: Number, type: ListType, movieId: Number) {
+        val wishList: MovieList = listRepo.get(userId, type)
+        val movieIds = wishList.movieIds.toMutableList()
+        movieIds.remove(movieId)
 
         listRepo.update(userId, type, movieIds)
     }

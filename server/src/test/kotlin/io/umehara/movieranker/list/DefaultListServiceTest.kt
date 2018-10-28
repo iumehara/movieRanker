@@ -48,4 +48,15 @@ class DefaultListServiceTest {
         assertThat(listRepo.updateArgType).isEqualTo(WISHLIST)
         assertThat(listRepo.updateArgMovieIds).isEqualTo(listOf(12, 14, 15))
     }
+
+    @Test
+    fun remove_callsReposWithCorrectArguments() {
+        listRepo.getReturnValue = MovieList(5, 8, listOf(12, 14))
+
+        defaultMovieService.remove(8, WISHLIST, 14)
+
+        assertThat(listRepo.updateArgUserId).isEqualTo(8)
+        assertThat(listRepo.updateArgType).isEqualTo(WISHLIST)
+        assertThat(listRepo.updateArgMovieIds).isEqualTo(listOf(12))
+    }
 }

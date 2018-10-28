@@ -12,8 +12,13 @@ class ListController(val listService: ListService) {
         return listService.get(userId, WISHLIST)
     }
 
-    @PutMapping("wishlists/{userId}/movies/{movieId}")
+    @PutMapping("wishlists/{userId}/add/{movieId}")
     fun add(@PathVariable userId: Int, @PathVariable movieId: Int) {
         return listService.add(userId, WISHLIST, movieId)
+    }
+
+    @PutMapping("wishlists/{userId}/remove/{movieId}")
+    fun remove(@PathVariable userId: Int, @PathVariable movieId: Int) {
+        return listService.remove(userId, WISHLIST, movieId)
     }
 }
