@@ -4,3 +4,9 @@ VALUES ('The Godfather'),
        ('The Sound of Music'),
        ('Get Out'),
        ('Django Unchaine');
+
+INSERT INTO users (username)
+VALUES  ('admin');
+
+INSERT INTO wishlists (user_id)
+VALUES (1);
